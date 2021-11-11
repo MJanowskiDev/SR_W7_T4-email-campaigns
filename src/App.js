@@ -1,71 +1,92 @@
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Authenticate, Homepage, SingleCampaign, SingleSubscriber, Campaigns, Subscribers } from './pages';
+import { Authenticate, Homepage, SingleCampaign, SingleSubscriber, Campaigns, Subscribers, Logout } from './pages';
+import Layout from 'components/layout';
 import './App.css';
 
 import { ProtectedRoute, AuthRoute } from 'components/routes';
 
-const authenticated = true;
-
 function App() {
+	const [ authenticated, setAuthenticated ] = useState(false);
+
+	const onAuthenticatedHandle = (user) => {
+		setAuthenticated(user ? true : false);
+	};
+
+	const onLogoutHandle = () => {
+		setAuthenticated(false);
+	};
+
 	return (
 		<div className='App'>
 			<BrowserRouter>
-				<Routes>
-					<Route
-						path='/'
-						exact
-						element={
-							<ProtectedRoute authenticated={authenticated}>
-								<Homepage />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path='/authenticate'
-						exact
-						element={
-							<AuthRoute authenticated={authenticated}>
-								<Authenticate />
-							</AuthRoute>
-						}
-					/>
-					<Route
-						path='/subscribers'
-						exact
-						element={
-							<ProtectedRoute authenticated={authenticated}>
-								<Subscribers />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path='/campaigns'
-						exact
-						element={
-							<ProtectedRoute authenticated={authenticated}>
-								<Campaigns />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path='/subscriber/:id'
-						exact
-						element={
-							<ProtectedRoute authenticated={authenticated}>
-								<SingleSubscriber />
-							</ProtectedRoute>
-						}
-					/>
-					<Route
-						path='/campaign/:id'
-						exact
-						element={
-							<ProtectedRoute authenticated={authenticated}>
-								<SingleCampaign />
-							</ProtectedRoute>
-						}
-					/>
-				</Routes>
+				<Layout authenticated={authenticated}>
+					<Routes>
+						<Route
+							path='/'
+							exact
+							element={
+								<ProtectedRoute authenticated={authenticated}>
+									<Homepage />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path='/authenticate'
+							exact
+							element={
+								<AuthRoute authenticated={authenticated}>
+									<Authenticate onAuthenticated={onAuthenticatedHandle} />
+								</AuthRoute>
+							}
+						/>
+						<Route
+							path='/subscribers'
+							exact
+							element={
+								<ProtectedRoute authenticated={authenticated}>
+									<Subscribers />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path='/campaigns'
+							exact
+							element={
+								<ProtectedRoute authenticated={authenticated}>
+									<Campaigns />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path='/subscriber/:id'
+							exact
+							element={
+								<ProtectedRoute authenticated={authenticated}>
+									<SingleSubscriber />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path='/campaign/:id'
+							exact
+							element={
+								<ProtectedRoute authenticated={authenticated}>
+									<SingleCampaign />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path='/logout'
+							exact
+							element={
+								<ProtectedRoute authenticated={authenticated}>
+									<Logout logoutHandle={onLogoutHandle} />
+								</ProtectedRoute>
+							}
+						/>
+					</Routes>
+				</Layout>
 			</BrowserRouter>
 		</div>
 	);
