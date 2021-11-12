@@ -4,7 +4,7 @@ import { Authenticate, Homepage, SingleCampaign, SingleSubscriber, Campaigns, Su
 import Layout from 'components/layout';
 import './App.css';
 
-import { ProtectedRoute, AuthRoute } from 'components/routes';
+import { ProtectedRoute, AuthRoute, NotFound } from 'components/routes';
 
 function App() {
 	const [ authenticated, setAuthenticated ] = useState(false);
@@ -85,6 +85,7 @@ function App() {
 								</ProtectedRoute>
 							}
 						/>
+						<Route path='*' element={<NotFound />} />
 					</Routes>
 				</Layout>
 			</BrowserRouter>
