@@ -1,15 +1,12 @@
 .header {
     width: 100%;
     height: 5rem;
-    background-color:hsl(280, 5%, 13%);
+    background-color:var(--bg-color-main);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 10%;
+    padding: 0 10px;
     flex-wrap: wrap;
-
-
-
   }
 
   .linkActive a{
@@ -64,6 +61,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 10%;
+      padding: 0 5%;
     }
   }

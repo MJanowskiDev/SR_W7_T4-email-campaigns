@@ -20,10 +20,10 @@ function ReactTable({ columnsData, rowsData, baseUrl }) {
 					if (rowsData[rowIdx].protected) return <hr />;
 					return (
 						<div style={{ disabled: 'true' }} className={classes.ActionButtons}>
-							<Link to={`${baseUrl}/${rowsData[rowIdx].id}/edit`}>
+							<Link state={rowsData[rowIdx]} to={`${baseUrl}/${rowsData[rowIdx].id}/edit`}>
 								<MdOutlineEdit size={24} />
 							</Link>
-							<Link to={`${baseUrl}/${rowsData[rowIdx].id}/remove`}>
+							<Link state={rowsData[rowIdx]} to={`${baseUrl}/${rowsData[rowIdx].id}/remove`}>
 								<IoTrashSharp size={24} />
 							</Link>
 						</div>

@@ -6,3 +6,4 @@ export { default as AddSubscriber } from './AddSubscriber';
 export { default as Subscribers } from './Subscribers';
 export { default as Logout } from './Logout';
 export { default as AddCampaign } from './AddCampaign';
+export { default as SingleSubscriber } from './SingleSubscriber';

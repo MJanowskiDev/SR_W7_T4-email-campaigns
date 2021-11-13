@@ -17,7 +17,7 @@ function ReactTable({ subscribers }) {
 
 	return (
 		<div>
-			<Table columnsData={columns} rowsData={subscribers} baseUrl='/user' />
+			<Table columnsData={columns} rowsData={subscribers} baseUrl='/subscriber' />
 		</div>
 	);
 }

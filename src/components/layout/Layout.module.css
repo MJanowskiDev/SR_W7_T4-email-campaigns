@@ -5,4 +5,5 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    color: var(--text-color)
 }

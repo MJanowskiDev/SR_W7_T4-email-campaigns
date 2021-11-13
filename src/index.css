@@ -3,7 +3,14 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --text-color: hsl(280, 5%, 13%);
+  --bg-color-main:hsl(280, 5%, 13%);
+  --primary-color:rgb(0, 119, 255);
+  --error-color: #eb0400
 }
 * {
   box-sizing: border-box;
 }
+
+
