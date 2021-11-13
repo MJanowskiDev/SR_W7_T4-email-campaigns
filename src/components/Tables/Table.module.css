@@ -1,0 +1,42 @@
+.ActionButtons{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+}
+.ActionButtons a{
+    color: rgb(0, 119, 255) !important;
+}
+
+
+
+.Table{
+    width:100%;
+    border-collapse: collapse;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.TableContainer{
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.Table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #000000;
+    color: white;
+  }
+
+
+.Table  td,  th {
+    border: 1px solid #ddd;
+    padding: 16px;
+  }
+
+
+  .Table tr:nth-child(odd){background-color: #f2f2f2;}
+

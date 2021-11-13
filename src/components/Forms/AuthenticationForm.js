@@ -19,11 +19,13 @@ const AuthenticationForm = ({ accesGranted }) => {
 
 	return (
 		<form className={classes.Form} onSubmit={formSubmitHandle}>
-			<div style={{ visibility: 'hidden', height: 0 }}>
-				<label htmlFor='username' />
-				<input id='user' type='text' autoComplete='username' defaultValue='root' />
-			</div>
-
+			<input
+				style={{ visibility: 'hidden', height: 0 }}
+				id='user'
+				type='text'
+				autoComplete='username'
+				defaultValue='root'
+			/>
 			<label htmlFor='password' />
 			<input placeholder='Please enter password' id='pswd' type='password' autoComplete='new-password' />
 			<input className={classes.Button} type='submit' value='Authenticate' />

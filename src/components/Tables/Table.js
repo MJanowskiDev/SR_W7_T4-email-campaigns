@@ -1,57 +1,69 @@
 import { useMemo } from 'react';
 import { useTable } from 'react-table';
-function ReactTable({ columnsData, rowsData }) {
+import { Link } from 'react-router-dom';
+
+import { MdOutlineEdit } from 'react-icons/md';
+import { IoTrashSharp } from 'react-icons/io5';
+
+import classes from './Table.module.css';
+
+function ReactTable({ columnsData, rowsData, baseUrl }) {
 	const data = useMemo(() => rowsData, [ rowsData ]);
 
-	const columns = useMemo(() => columnsData, [ columnsData ]);
+	const columns = useMemo(
+		() => {
+			const actionButtons = {
+				Header: 'Actions',
+				accessor: 'actions',
+				Cell: (props) => {
+					const rowIdx = props.row.id;
+					if (rowsData[rowIdx].protected) return <hr />;
+					return (
+						<div style={{ disabled: 'true' }} className={classes.ActionButtons}>
+							<Link to={`${baseUrl}/${rowsData[rowIdx].id}/edit`}>
+								<MdOutlineEdit size={24} />
+							</Link>
+							<Link to={`${baseUrl}/${rowsData[rowIdx].id}/remove`}>
+								<IoTrashSharp size={24} />
+							</Link>
+						</div>
+					);
+				}
+			};
+
+			return [ ...columnsData, actionButtons ];
+		},
+		[ columnsData, baseUrl, rowsData ]
+	);
 
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
 
 	return (
-		<table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-			<thead>
-				{headerGroups.map((headerGroup) => (
-					<tr {...headerGroup.getHeaderGroupProps()}>
-						{headerGroup.headers.map((column) => (
-							<th
-								{...column.getHeaderProps()}
-								style={{
-									borderBottom: 'solid 3px red',
-									background: 'aliceblue',
-									color: 'black',
-									fontWeight: 'bold'
-								}}
-							>
-								{column.render('Header')}
-							</th>
-						))}
-					</tr>
-				))}
-			</thead>
-			<tbody {...getTableBodyProps()}>
-				{rows.map((row) => {
-					prepareRow(row);
-					return (
-						<tr {...row.getRowProps()}>
-							{row.cells.map((cell) => {
-								return (
-									<td
-										{...cell.getCellProps()}
-										style={{
-											padding: '10px',
-											border: 'solid 1px gray',
-											background: 'papayawhip'
-										}}
-									>
-										{cell.render('Cell')}
-									</td>
-								);
-							})}
+		<div className={classes.TableContainer}>
+			<table className={classes.Table} {...getTableProps()}>
+				<thead>
+					{headerGroups.map((headerGroup) => (
+						<tr {...headerGroup.getHeaderGroupProps()}>
+							{headerGroup.headers.map((column) => (
+								<th {...column.getHeaderProps()}>{column.render('Header')}</th>
+							))}
 						</tr>
-					);
-				})}
-			</tbody>
-		</table>
+					))}
+				</thead>
+				<tbody {...getTableBodyProps()}>
+					{rows.map((row) => {
+						prepareRow(row);
+						return (
+							<tr {...row.getRowProps()}>
+								{row.cells.map((cell) => {
+									return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+								})}
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+		</div>
 	);
 }
 

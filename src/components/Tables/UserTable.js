@@ -14,9 +14,10 @@ function ReactTable({ subscribers }) {
 			accessor: 'created-at'
 		}
 	];
+
 	return (
 		<div>
-			<Table columnsData={columns} rowsData={subscribers} />
+			<Table columnsData={columns} rowsData={subscribers} baseUrl='/user' />
 		</div>
 	);
 }

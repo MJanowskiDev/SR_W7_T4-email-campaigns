@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { SubscriberForm } from 'components/Forms';
 import { createSubscriber } from 'utils/api-subscribers';
 import { Spinner } from 'components/ui';
-const SingleSubscriber = () => {
+
+const AddSubscriber = () => {
 	const [ fetchError, setFetchError ] = useState();
 	const [ loading, setLoading ] = useState(false);
 	const [ response, setResponse ] = useState();
@@ -27,7 +28,7 @@ const SingleSubscriber = () => {
 			{!response && !loading && !fetchError && <SubscriberForm saveHandle={createNewSubscriber} />}
 			{response && (
 				<div>
-					<p>Successfully saved user</p>
+					<p>Successfully saved Subscriber</p>
 					<button onClick={confirmHandle}>OK</button>
 				</div>
 			)}
@@ -35,4 +36,4 @@ const SingleSubscriber = () => {
 	);
 };
 
-export default SingleSubscriber;
+export default AddSubscriber;

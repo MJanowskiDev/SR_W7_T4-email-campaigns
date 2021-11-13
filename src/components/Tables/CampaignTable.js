@@ -20,7 +20,7 @@ function CampaignTable({ campaigns }) {
 	];
 	return (
 		<div>
-			<Table columnsData={columns} rowsData={campaigns} />
+			<Table columnsData={columns} rowsData={campaigns} baseUrl='/campaign' />
 		</div>
 	);
 }
