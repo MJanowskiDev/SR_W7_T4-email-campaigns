@@ -8,6 +8,14 @@ function CampaignTable({ campaigns }) {
 		{
 			Header: 'Content',
 			accessor: 'content'
+		},
+		{
+			Header: 'Created at',
+			accessor: 'created-at'
+		},
+		{
+			Header: 'Status',
+			accessor: 'status'
 		}
 	];
 	return (

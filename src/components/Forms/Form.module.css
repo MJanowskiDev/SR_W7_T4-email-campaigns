@@ -1,0 +1,27 @@
+.Error {
+    color: red;
+    padding: 5px;
+}
+.Form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+}
+
+.Form input, textarea{
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.Button{
+    border-radius: 6px;
+    padding: 10px;
+    font-weight: 700;
+    border: 1px solid #3d8107;
+    color: #3d8107;
+    background: white;
+    letter-spacing: 2px;
+}

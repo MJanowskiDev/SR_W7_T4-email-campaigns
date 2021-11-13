@@ -1,0 +1,8 @@
+.Main{
+    max-width: 1200px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}

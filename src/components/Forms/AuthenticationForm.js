@@ -1,3 +1,4 @@
+import classes from './Form.module.css';
 const AuthenticationForm = ({ accesGranted }) => {
 	const grantAccess = (user) => {
 		accesGranted && accesGranted(user);
@@ -17,15 +18,15 @@ const AuthenticationForm = ({ accesGranted }) => {
 	};
 
 	return (
-		<form onSubmit={formSubmitHandle}>
-			<div style={{ visibility: 'hidden' }}>
+		<form className={classes.Form} onSubmit={formSubmitHandle}>
+			<div style={{ visibility: 'hidden', height: 0 }}>
 				<label htmlFor='username' />
 				<input id='user' type='text' autoComplete='username' defaultValue='root' />
 			</div>
 
 			<label htmlFor='password' />
-			<input id='pswd' type='password' autoComplete='new-password' />
-			<input type='submit' value='Authenticate' />
+			<input placeholder='Please enter password' id='pswd' type='password' autoComplete='new-password' />
+			<input className={classes.Button} type='submit' value='Authenticate' />
 		</form>
 	);
 };

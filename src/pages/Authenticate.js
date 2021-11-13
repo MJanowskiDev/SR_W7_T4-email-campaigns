@@ -1,4 +1,4 @@
-import AuthenticationForm from 'components/AuthenticationForm';
+import { AuthenticationForm } from 'components/Forms';
 const Authenticate = ({ onAuthenticated }) => {
 	const accesGranted = (user) => {
 		onAuthenticated && onAuthenticated(user);

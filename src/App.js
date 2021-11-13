@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Authenticate, Homepage, SingleCampaign, SingleSubscriber, Campaigns, Subscribers, Logout } from './pages';
+import {
+	Authenticate,
+	Homepage,
+	SingleCampaign,
+	AddSubscriber,
+	Campaigns,
+	Subscribers,
+	Logout,
+	AddCampaign
+} from './pages';
 import Layout from 'components/layout';
 import './App.css';
 
@@ -59,11 +68,21 @@ function App() {
 							}
 						/>
 						<Route
-							path='/subscriber/:id'
+							path='/add-subscriber'
 							exact
 							element={
 								<ProtectedRoute authenticated={authenticated}>
-									<SingleSubscriber />
+									<AddSubscriber />
+								</ProtectedRoute>
+							}
+						/>
+
+						<Route
+							path='/add-campaign'
+							exact
+							element={
+								<ProtectedRoute authenticated={authenticated}>
+									<AddCampaign />
 								</ProtectedRoute>
 							}
 						/>

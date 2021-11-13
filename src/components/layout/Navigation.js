@@ -14,11 +14,17 @@ const Navigation = () => {
 			</Link>
 			<nav>
 				<ul>
+					<li className={pathname === '/add-subscriber' ? classes.linkActive : classes.linkInactive}>
+						<Link to='/add-subscriber'>Add Subscriber</Link>
+					</li>
+					<li className={pathname === '/add-campaign' ? classes.linkActive : classes.linkInactive}>
+						<Link to='/add-campaign'>Add Campaign</Link>
+					</li>
 					<li className={pathname === '/subscribers' ? classes.linkActive : classes.linkInactive}>
-						<Link to='/subscribers'>Subscribers</Link>
+						<Link to='/subscribers'>All Subscribers</Link>
 					</li>
 					<li className={pathname === '/campaigns' ? classes.linkActive : classes.linkInactive}>
-						<Link to='/campaigns'>Campaigns</Link>
+						<Link to='/campaigns'>All Campaigns</Link>
 					</li>
 					<li className={`${classes.linkInactive} ${classes.linkLogout}`}>
 						<Link to='/logout'>Logout</Link>
