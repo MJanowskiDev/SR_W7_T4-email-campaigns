@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 const Logout = ({ logoutHandle }) => {
-	useEffect(() => {
-		logoutHandle && logoutHandle();
-	}, []);
+	useEffect(
+		() => {
+			logoutHandle && logoutHandle();
+		},
+		[ logoutHandle ]
+	);
 
 	return <div />;
 };
