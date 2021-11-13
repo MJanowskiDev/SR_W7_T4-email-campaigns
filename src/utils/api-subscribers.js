@@ -1,4 +1,4 @@
-const API_KEY = 'keyMs76W1kgLi1005';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const subscribersBaseUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers?api_key=${API_KEY}`;
 const campaignsBaseUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/campaigns?api_key=${API_KEY}`;
