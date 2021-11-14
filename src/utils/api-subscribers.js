@@ -104,3 +104,12 @@ export const patchSubscriber = (id, data) => {
 export const patchCampaign = (id, data) => {
 	return patch(campaignsBaseUrl, id, data);
 };
+
+export const getRecipientEmails = async () => {
+	const emailsUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers?api_key=${API_KEY}&fields%5B%5D=email`;
+	const res = await getAll(emailsUrl);
+
+	const emailsArray = res.data.map((field) => field.email);
+
+	return { data: emailsArray, error: res.error };
+};

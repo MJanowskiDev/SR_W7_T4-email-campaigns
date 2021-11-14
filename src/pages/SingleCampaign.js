@@ -14,8 +14,8 @@ const SingleCampaign = () => {
 		patchRef.current.onPatchConfirm(id, data);
 	};
 
-	const sendEmails = () => {
-		console.log('Send emails');
+	const sendEmails = (data) => {
+		patchRef.current.onPatchConfirm(id, data);
 	};
 
 	if (mode === 'edit') {

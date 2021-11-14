@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CampaignForm } from 'components/Forms';
 import { createCampaign } from 'utils/api-subscribers';
 import { Spinner } from 'components/ui';
+import { sendEmails } from 'utils/api-emailjs';
 
 const AddCampaign = () => {
 	const [ fetchError, setFetchError ] = useState();
@@ -18,6 +19,7 @@ const AddCampaign = () => {
 
 	const saveAndSendHandle = async (formData) => {
 		setLoading(true);
+		console.log('here');
 		const { data, error } = await createCampaign({ ...formData, status: 'Sent' });
 		setLoading(false);
 		setResponse(data);
