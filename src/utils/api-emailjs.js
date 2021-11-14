@@ -1,11 +1,9 @@
-// const API_KEY = process.env.REACT_APP_API_KEY;
-
 const url = 'https://api.emailjs.com/api/v1.0/email/send';
 
-const serviceId = 'SR_W7_T4-CampaignerApp';
-const templateId = 'template_urjnjva';
-const userId = 'user_UEReVlJsOMvPS6IGlHfsk';
-const token = 'fff05b342427f10ce0c2298c2cf4774e';
+const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const userId = process.env.REACT_APP_EMAILJS_USER_ID;
+const token = process.env.REACT_APP_EMAILJS_TOKEN;
 
 export const sendEmails = (subject, content, email) => {
 	var data = {
@@ -21,7 +19,7 @@ export const sendEmails = (subject, content, email) => {
 	};
 
 	return fetch(url, {
-		method: 'POST', // or 'PUT'
+		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
