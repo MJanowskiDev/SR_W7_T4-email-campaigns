@@ -23,6 +23,41 @@ const create = (url, data) => {
 		});
 };
 
+const patch = (url, id, data) => {
+	return fetch(url, {
+		method: 'PATCH', // or 'PUT'
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${API_KEY}`
+		},
+		body: JSON.stringify({ records: [ { id: id, fields: data } ] })
+	})
+		.then((res) => res.json())
+		.then((res) => {
+			if (res.error) throw new Error(res.error);
+
+			return { data: res, error: false };
+		})
+		.catch((error) => {
+			return { data: [], error: error };
+		});
+};
+
+const remove = (url, id) => {
+	return fetch(url, {
+		method: 'DELETE'
+	})
+		.then((res) => res.json())
+		.then((res) => {
+			if (res.error) throw new Error(res.error);
+
+			return { data: res, error: false };
+		})
+		.catch((error) => {
+			return { data: [], error: error };
+		});
+};
+
 const getAll = (url) => {
 	return fetch(url)
 		.then((res) => res.json())
@@ -50,4 +85,22 @@ export const getAllSubscribers = () => {
 
 export const getAllCampaigns = () => {
 	return getAll(campaignsBaseUrl);
+};
+
+export const removeSubscriber = (id) => {
+	const url = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers/${id}?api_key=${API_KEY}`;
+	return remove(url, id);
+};
+
+export const removeCampaign = (id) => {
+	const url = `https://api.airtable.com/v0/appFfCocKXEnFjab8/campaigns/${id}?api_key=${API_KEY}`;
+	return remove(url, id);
+};
+
+export const patchSubscriber = (id, data) => {
+	return patch(subscribersBaseUrl, id, data);
+};
+
+export const patchCampaign = (id, data) => {
+	return patch(campaignsBaseUrl, id, data);
 };

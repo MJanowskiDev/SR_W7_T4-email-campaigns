@@ -15,6 +15,8 @@ function ReactTable({ subscribers }) {
 		}
 	];
 
+	if (subscribers && subscribers.length === 0) return <p>No data to show</p>;
+
 	return (
 		<div>
 			<Table columnsData={columns} rowsData={subscribers} baseUrl='/subscriber' />

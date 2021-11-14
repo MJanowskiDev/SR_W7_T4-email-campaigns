@@ -18,6 +18,9 @@ function CampaignTable({ campaigns }) {
 			accessor: 'status'
 		}
 	];
+
+	if (campaigns && campaigns.length === 0) return <p>No data to show</p>;
+
 	return (
 		<div>
 			<Table columnsData={columns} rowsData={campaigns} baseUrl='/campaign' />

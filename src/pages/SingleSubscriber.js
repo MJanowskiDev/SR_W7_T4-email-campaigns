@@ -1,45 +1,30 @@
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import { SubscriberForm } from 'components/Forms';
+import { removeSubscriber, patchSubscriber } from 'utils/api-subscribers';
+
+import { Delete, Patch } from 'components/CRUD';
+
 const SingleSubscriber = () => {
 	const { mode, id } = useParams();
 	const { state } = useLocation();
-	const navigate = useNavigate();
+
+	const patchRef = useRef();
 
 	const updateSubscriber = (data) => {
-		console.log('Update', data);
-	};
-
-	const removeSubscriber = (id) => {
-		console.log('Remove', id);
-	};
-
-	const onRemovalCancel = () => {
-		navigate('/subscribers');
+		patchRef.current.onPatchConfirm(id, data);
 	};
 
 	if (mode === 'edit') {
 		return (
-			<div>
-				<h1>Edit mode</h1>
+			<Patch ref={patchRef} patchHandle={patchSubscriber} redirectPath='/subscribers'>
 				<SubscriberForm saveHandle={updateSubscriber} initialEmail={state.email} initialName={state.name} />
-			</div>
+			</Patch>
 		);
 	}
 
 	if (mode === 'remove') {
-		return (
-			<div>
-				<h1>Remove mode</h1>
-				<p>
-					Do You want permanently remove <strong>{state.name}</strong>
-				</p>
-
-				<div>
-					<button onClick={() => removeSubscriber(state.id)}>Yes</button>
-					<button onClick={onRemovalCancel}>No</button>
-				</div>
-			</div>
-		);
+		return <Delete name={state.name} removeHandle={removeSubscriber} id={id} removeCancelPath='/subscribers' />;
 	}
 
 	return (
