@@ -6,7 +6,7 @@ body {
 
   --text-color: hsl(280, 5%, 13%);
   --bg-color-main:hsl(280, 5%, 13%);
-  --primary-color:rgb(0, 119, 255);
+  --primary-color:#0077ff;
   --error-color: #eb0400
 }
 * {

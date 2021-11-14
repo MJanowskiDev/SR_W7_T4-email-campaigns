@@ -1,6 +1,6 @@
 import { useState, forwardRef, useImperativeHandle } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Spinner } from 'components/ui';
+import { Spinner, Button } from 'components/ui';
 
 const Patch = ({ patchHandle, redirectPath, children }, ref) => {
 	const navigate = useNavigate();
@@ -32,24 +32,24 @@ const Patch = ({ patchHandle, redirectPath, children }, ref) => {
 	const errorComponent = (
 		<div>
 			<p>Error occured while updating entry.</p>
-			<button onClick={onRedirect}>Ok</button>
+			<Button onClick={onRedirect}>Ok</Button>
 		</div>
 	);
 
 	const successComponent = (
 		<div>
 			<p>Successfully updated entry.</p>
-			<button onClick={onRedirect}>Ok</button>
+			<Button onClick={onRedirect}>Ok</Button>
 		</div>
 	);
-	console.log(data);
+
 	return (
 		<div>
 			<h1>Updating...</h1>
 			{!loading && !error && !data && children}
 			{loading && <Spinner />}
 			{error && errorComponent}
-			{data && data.length > 0 && successComponent}
+			{data && successComponent}
 		</div>
 	);
 };

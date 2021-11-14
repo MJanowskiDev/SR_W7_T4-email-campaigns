@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { CampaignForm } from 'components/Forms';
 import { createCampaign } from 'utils/api-subscribers';
-import { Spinner } from 'components/ui';
-import { sendEmails } from 'utils/api-emailjs';
+import { Spinner, Button } from 'components/ui';
 
 const AddCampaign = () => {
 	const [ fetchError, setFetchError ] = useState();
@@ -19,7 +18,6 @@ const AddCampaign = () => {
 
 	const saveAndSendHandle = async (formData) => {
 		setLoading(true);
-		console.log('here');
 		const { data, error } = await createCampaign({ ...formData, status: 'Sent' });
 		setLoading(false);
 		setResponse(data);
@@ -32,7 +30,7 @@ const AddCampaign = () => {
 
 	return (
 		<div>
-			<h1>Add new Campaign </h1>
+			<h1>Create Campaign </h1>
 			{loading && <Spinner />}
 			{fetchError && <p>Sending failed</p>}
 			{!response &&
@@ -41,7 +39,7 @@ const AddCampaign = () => {
 			{response && (
 				<div>
 					<p>Successfully saved campaign</p>
-					<button onClick={confirmHandle}>OK</button>
+					<Button onClick={confirmHandle}>OK</Button>
 				</div>
 			)}
 		</div>

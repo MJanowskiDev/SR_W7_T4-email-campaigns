@@ -20,7 +20,7 @@ const Subscribers = () => {
 
 	return (
 		<div>
-			<h1>This is Subscribers page</h1>
+			<h1>All Subscribers</h1>
 			{loading && <Spinner />}
 			{fetchError && <p>Error while fetching data</p>}
 			{!loading && !fetchError && <UserTable subscribers={allSubscribers} />}

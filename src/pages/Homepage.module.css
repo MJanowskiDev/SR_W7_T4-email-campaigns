@@ -1,0 +1,9 @@
+.Homepage{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.Homepage img{
+    margin: 20px 5px;
+}

@@ -19,7 +19,7 @@ const Campaigns = () => {
 
 	return (
 		<div>
-			<h1>This is Campaigns page</h1>
+			<h1>All Campaigns</h1>
 			{fetchError && <p>Error while fetching data</p>}
 			{loading && <Spinner />}
 			{!loading && !fetchError && <CampaignTable campaigns={allCampaigns} />}

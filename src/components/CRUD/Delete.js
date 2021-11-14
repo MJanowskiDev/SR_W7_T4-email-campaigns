@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Spinner } from 'components/ui';
+import { Spinner, Button } from 'components/ui';
 
 const Delete = ({ name, removeHandle, id, removeCancelPath }) => {
 	const navigate = useNavigate();
@@ -28,8 +28,8 @@ const Delete = ({ name, removeHandle, id, removeCancelPath }) => {
 				Do You want to permanently remove <strong>{name}</strong>
 			</p>
 			<div>
-				<button onClick={onRemoveConfirm}>Yes</button>
-				<button onClick={onRedirect}>No</button>
+				<Button onClick={onRemoveConfirm}>Yes</Button>
+				<Button onClick={onRedirect}>No</Button>
 			</div>
 		</div>
 	);
@@ -39,7 +39,7 @@ const Delete = ({ name, removeHandle, id, removeCancelPath }) => {
 			<p>
 				Error occured while removing <strong>{name}</strong>
 			</p>
-			<button onClick={onRedirect}>Ok</button>
+			<Button onClick={onRedirect}>Ok</Button>
 		</div>
 	);
 
@@ -48,7 +48,7 @@ const Delete = ({ name, removeHandle, id, removeCancelPath }) => {
 			<p>
 				Successfully removed <strong>{name}</strong>
 			</p>
-			<button onClick={onRedirect}>Ok</button>
+			<Button onClick={onRedirect}>Ok</Button>
 		</div>
 	);
 

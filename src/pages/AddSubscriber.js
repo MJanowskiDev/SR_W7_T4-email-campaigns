@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SubscriberForm } from 'components/Forms';
 import { createSubscriber } from 'utils/api-subscribers';
-import { Spinner } from 'components/ui';
+import { Spinner, Button } from 'components/ui';
 
 const AddSubscriber = () => {
 	const [ fetchError, setFetchError ] = useState();
@@ -22,14 +22,14 @@ const AddSubscriber = () => {
 
 	return (
 		<div>
-			<h1>Add new Subscriber </h1>
+			<h1>Add new Subscriber</h1>
 			{loading && <Spinner />}
 			{fetchError && <p>Sending failed</p>}
 			{!response && !loading && !fetchError && <SubscriberForm saveHandle={createNewSubscriber} />}
 			{response && (
 				<div>
 					<p>Successfully saved Subscriber</p>
-					<button onClick={confirmHandle}>OK</button>
+					<Button onClick={confirmHandle}>OK</Button>
 				</div>
 			)}
 		</div>
