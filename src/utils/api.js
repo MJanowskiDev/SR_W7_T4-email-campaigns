@@ -3,12 +3,20 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const subscribersBaseUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers?api_key=${API_KEY}`;
 const campaignsBaseUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/campaigns?api_key=${API_KEY}`;
 
+const getRemoveSubscriberUrl = (id) => {
+	return `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers/${id}?api_key=${API_KEY}`;
+};
+const getRemoveCampaignUrl = (id) => {
+	return `https://api.airtable.com/v0/appFfCocKXEnFjab8/campaigns/${id}?api_key=${API_KEY}`;
+};
+
+const allRecipientsUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers?api_key=${API_KEY}&fields%5B%5D=email&fields%5B%5D=name`;
+
 const create = (url, data) => {
 	return fetch(url, {
-		method: 'POST', // or 'PUT'
+		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${API_KEY}`
+			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({ fields: data })
 	})
@@ -25,10 +33,9 @@ const create = (url, data) => {
 
 const patch = (url, id, data) => {
 	return fetch(url, {
-		method: 'PATCH', // or 'PUT'
+		method: 'PATCH',
 		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${API_KEY}`
+			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({ records: [ { id: id, fields: data } ] })
 	})
@@ -88,12 +95,12 @@ export const getAllCampaigns = () => {
 };
 
 export const removeSubscriber = (id) => {
-	const url = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers/${id}?api_key=${API_KEY}`;
+	const url = getRemoveSubscriberUrl(id);
 	return remove(url, id);
 };
 
 export const removeCampaign = (id) => {
-	const url = `https://api.airtable.com/v0/appFfCocKXEnFjab8/campaigns/${id}?api_key=${API_KEY}`;
+	const url = getRemoveCampaignUrl(id);
 	return remove(url, id);
 };
 
@@ -105,17 +112,8 @@ export const patchCampaign = (id, data) => {
 	return patch(campaignsBaseUrl, id, data);
 };
 
-export const getRecipientEmails = async () => {
-	const emailsUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers?api_key=${API_KEY}&fields%5B%5D=email`;
-	const res = await getAll(emailsUrl);
-
-	const emailsArray = res.data.map((field) => field.email);
-
-	return { data: emailsArray, error: res.error };
-};
-
 export const getRecipients = async () => {
-	const recipientsUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers?api_key=${API_KEY}&fields%5B%5D=email&fields%5B%5D=name`;
+	const recipientsUrl = allRecipientsUrl;
 	const res = await getAll(recipientsUrl);
 	return { data: res.data, error: res.error };
 };

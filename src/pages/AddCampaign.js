@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { CampaignForm } from 'components/Forms';
-import { createCampaign } from 'utils/api-subscribers';
+import { createCampaign } from 'utils/api';
 
 import { Create } from 'components/CRUD';
 import { EmailsSender } from 'components/EmailsSender';

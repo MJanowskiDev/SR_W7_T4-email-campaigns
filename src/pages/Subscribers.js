@@ -1,6 +1,6 @@
 import { UserTable } from 'components/Tables';
 import { useEffect, useState } from 'react';
-import { getAllSubscribers } from 'utils/api-subscribers';
+import { getAllSubscribers } from 'utils/api';
 import { Spinner } from 'components/ui';
 import { humanizeDate } from 'utils';
 

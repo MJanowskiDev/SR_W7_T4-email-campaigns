@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { Delete, Patch } from 'components/CRUD';
 import { CampaignForm } from 'components/Forms';
-import { removeCampaign, patchCampaign } from 'utils/api-subscribers';
+import { removeCampaign, patchCampaign } from 'utils/api';
 import { EmailsSender } from 'components/EmailsSender';
 
 const SingleCampaign = () => {

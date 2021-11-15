@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { SubscriberForm } from 'components/Forms';
-import { removeSubscriber, patchSubscriber } from 'utils/api-subscribers';
+import { removeSubscriber, patchSubscriber } from 'utils/api';
 
 import { Delete, Patch } from 'components/CRUD';
 

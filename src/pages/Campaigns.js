@@ -1,6 +1,6 @@
 import { CampaignTable } from 'components/Tables';
 import { useEffect, useState } from 'react';
-import { getAllCampaigns } from 'utils/api-subscribers';
+import { getAllCampaigns } from 'utils/api';
 import { Spinner } from 'components/ui';
 import { humanizeDate } from 'utils';
 
