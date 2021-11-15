@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'components/ui';
+import PropTypes from 'prop-types';
 
 const Delete = ({ name, removeHandle, id, removeCancelPath }) => {
 	const navigate = useNavigate();
@@ -8,6 +9,7 @@ const Delete = ({ name, removeHandle, id, removeCancelPath }) => {
 	const [ loading, setLoading ] = useState(false);
 	const [ data, setData ] = useState();
 	const [ error, setError ] = useState();
+
 	const onRemoveConfirm = async () => {
 		if (removeHandle) {
 			setLoading(true);
@@ -61,6 +63,13 @@ const Delete = ({ name, removeHandle, id, removeCancelPath }) => {
 			{data && data.deleted && successComponent}
 		</div>
 	);
+};
+
+Delete.propTypes = {
+	name: PropTypes.string.isRequired,
+	removeHandle: PropTypes.func.isRequired,
+	id: PropTypes.string.isRequired,
+	removeCancelPath: PropTypes.string.isRequired
 };
 
 export default Delete;

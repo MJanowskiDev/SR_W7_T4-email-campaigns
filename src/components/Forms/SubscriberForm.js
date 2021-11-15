@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import classes from './Form.module.css';
+import PropTypes from 'prop-types';
 
 const SubscriberForm = ({ saveHandle, initialName, initialEmail }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
@@ -30,6 +31,12 @@ const SubscriberForm = ({ saveHandle, initialName, initialEmail }) => {
 			<input className={classes.Button} type='submit' />
 		</form>
 	);
+};
+
+SubscriberForm.propTypes = {
+	saveHandle: PropTypes.func.isRequired,
+	initialName: PropTypes.string,
+	initialEmail: PropTypes.string
 };
 
 export default SubscriberForm;

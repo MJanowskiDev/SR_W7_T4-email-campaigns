@@ -1,9 +1,11 @@
 import Table from 'components/Tables/Table';
-function ReactTable({ subscribers }) {
+import PropTypes from 'prop-types';
+
+function UserTable({ subscribers }) {
 	const columns = [
 		{
 			Header: 'Email',
-			accessor: 'email' // accessor is the "key" in the data
+			accessor: 'email'
 		},
 		{
 			Header: 'Name',
@@ -23,5 +25,7 @@ function ReactTable({ subscribers }) {
 		</div>
 	);
 }
-
-export default ReactTable;
+UserTable.propTypes = {
+	subscribers: PropTypes.array.isRequired
+};
+export default UserTable;

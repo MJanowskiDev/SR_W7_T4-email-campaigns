@@ -1,8 +1,6 @@
 import { forwardRef, useImperativeHandle, useState } from 'react';
-
 import { sendEmails } from 'utils/api-emailjs';
 import { getRecipients } from 'utils/api-subscribers';
-
 import { Spinner, Button } from 'components/ui';
 
 const EmailsSender = ({ children }, ref) => {

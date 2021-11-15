@@ -1,9 +1,11 @@
 import Table from 'components/Tables/Table';
+import PropTypes from 'prop-types';
+
 function CampaignTable({ campaigns }) {
 	const columns = [
 		{
 			Header: 'Subject',
-			accessor: 'subject' // accessor is the "key" in the data
+			accessor: 'subject'
 		},
 		{
 			Header: 'Content',
@@ -27,5 +29,9 @@ function CampaignTable({ campaigns }) {
 		</div>
 	);
 }
+
+CampaignTable.propTypes = {
+	campaigns: PropTypes.array.isRequired
+};
 
 export default CampaignTable;

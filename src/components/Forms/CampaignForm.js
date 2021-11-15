@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import classes from './Form.module.css';
+import PropTypes from 'prop-types';
 
 const CampaignForm = ({ saveHandle, saveAndSendHandle, initialSubject, initialContent }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
@@ -42,6 +43,13 @@ const CampaignForm = ({ saveHandle, saveAndSendHandle, initialSubject, initialCo
 			</form>
 		</div>
 	);
+};
+
+CampaignForm.propTypes = {
+	saveHandle: PropTypes.func.isRequired,
+	saveAndSendHandle: PropTypes.func.isRequired,
+	initialSubject: PropTypes.string,
+	initialContent: PropTypes.string
 };
 
 export default CampaignForm;

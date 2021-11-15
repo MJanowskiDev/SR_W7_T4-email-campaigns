@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 const Logout = ({ logoutHandle }) => {
 	useEffect(
 		() => {
@@ -8,6 +10,10 @@ const Logout = ({ logoutHandle }) => {
 	);
 
 	return <div />;
+};
+
+Logout.propTypes = {
+	logoutHandle: PropTypes.func.isRequired
 };
 
 export default Logout;

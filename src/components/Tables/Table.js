@@ -1,13 +1,12 @@
 import { useMemo } from 'react';
 import { useTable } from 'react-table';
 import { Link } from 'react-router-dom';
-
 import { MdOutlineEdit } from 'react-icons/md';
 import { IoTrashSharp } from 'react-icons/io5';
-
 import classes from './Table.module.css';
+import PropTypes from 'prop-types';
 
-function ReactTable({ columnsData, rowsData, baseUrl }) {
+function Table({ columnsData, rowsData, baseUrl }) {
 	const data = useMemo(() => rowsData, [ rowsData ]);
 
 	const columns = useMemo(
@@ -67,4 +66,10 @@ function ReactTable({ columnsData, rowsData, baseUrl }) {
 	);
 }
 
-export default ReactTable;
+Table.propTypes = {
+	columnsData: PropTypes.array.isRequired,
+	rowsData: PropTypes.array.isRequired,
+	baseUrl: PropTypes.string.isRequired
+};
+
+export default Table;

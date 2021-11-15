@@ -1,4 +1,6 @@
 import classes from './Form.module.css';
+import PropTypes from 'prop-types';
+
 const AuthenticationForm = ({ accesGranted }) => {
 	const grantAccess = (user) => {
 		accesGranted && accesGranted(user);
@@ -31,6 +33,10 @@ const AuthenticationForm = ({ accesGranted }) => {
 			<input className={classes.Button} type='submit' value='Authenticate' />
 		</form>
 	);
+};
+
+AuthenticationForm.propTypes = {
+	accesGranted: PropTypes.func.isRequired
 };
 
 export default AuthenticationForm;
