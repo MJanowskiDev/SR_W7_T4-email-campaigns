@@ -1,5 +1,5 @@
 import classes from './NotFound.module.css';
-import { Link } from 'react-router-dom';
+import { Button } from 'components/ui';
 
 const NotFound = () => {
 	return (
@@ -12,7 +12,7 @@ const NotFound = () => {
 				<p>Page not found</p>
 			</div>
 			<br />
-			<Link to='/'>Homepage</Link>
+			<Button to='/'>Homepage</Button>
 		</div>
 	);
 };

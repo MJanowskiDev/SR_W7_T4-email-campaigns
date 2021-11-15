@@ -12,7 +12,7 @@ const SingleSubscriber = () => {
 	const patchRef = useRef();
 
 	const updateSubscriber = (data) => {
-		patchRef.current.onPatchConfirm(id, data);
+		patchRef.current.onPatchConfirm(id, data, 'Updating Subscriber');
 	};
 
 	if (mode === 'edit') {

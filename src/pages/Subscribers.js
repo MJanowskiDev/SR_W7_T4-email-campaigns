@@ -2,6 +2,7 @@ import { UserTable } from 'components/Tables';
 import { useEffect, useState } from 'react';
 import { getAllSubscribers } from 'utils/api-subscribers';
 import { Spinner } from 'components/ui';
+import { humanizeDate } from 'utils';
 
 const Subscribers = () => {
 	const [ allSubscribers, setAllSubscribers ] = useState([]);
@@ -11,7 +12,12 @@ const Subscribers = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const { data, error } = await getAllSubscribers();
-			setAllSubscribers(data);
+
+			const dataFormatted = data.map((el) => {
+				return { ...el, 'created-at': humanizeDate(el['created-at']) };
+			});
+
+			setAllSubscribers(dataFormatted);
 			setFetchError(error);
 			setLoading(false);
 		};

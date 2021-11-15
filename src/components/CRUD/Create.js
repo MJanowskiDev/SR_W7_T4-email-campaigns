@@ -2,7 +2,7 @@ import { useState, forwardRef, useImperativeHandle } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'components/ui';
 
-const Patch = ({ patchHandle, redirectPath, children }, ref) => {
+const Create = ({ createHandle, redirectPath, children }, ref) => {
 	const navigate = useNavigate();
 
 	const [ loading, setLoading ] = useState(false);
@@ -13,18 +13,18 @@ const Patch = ({ patchHandle, redirectPath, children }, ref) => {
 	useImperativeHandle(
 		ref,
 		() => ({
-			async onPatchConfirm(id, state, operation) {
+			async onCreateConfirm(state, operation) {
 				setOperation(operation);
-				if (patchHandle) {
+				if (createHandle) {
 					setLoading(true);
-					const { data, error } = await patchHandle(id, state);
+					const { data, error } = await createHandle(state);
 					setLoading(false);
 					setData(data);
 					setError(error);
 				}
 			}
 		}),
-		[ patchHandle ]
+		[ createHandle ]
 	);
 
 	const onRedirect = () => {
@@ -55,4 +55,4 @@ const Patch = ({ patchHandle, redirectPath, children }, ref) => {
 	);
 };
 
-export default forwardRef(Patch);
+export default forwardRef(Create);

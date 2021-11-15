@@ -1,47 +1,33 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { CampaignForm } from 'components/Forms';
 import { createCampaign } from 'utils/api-subscribers';
-import { Spinner, Button } from 'components/ui';
+
+import { Create } from 'components/CRUD';
+import { EmailsSender } from 'components/EmailsSender';
 
 const AddCampaign = () => {
-	const [ fetchError, setFetchError ] = useState();
-	const [ loading, setLoading ] = useState(false);
-	const [ response, setResponse ] = useState();
+	const createRef = useRef();
+	const emailsSenderRef = useRef();
 
-	const createNewSubscriber = async (formData) => {
-		setLoading(true);
-		const { data, error } = await createCampaign({ ...formData, status: 'Draft' });
-		setLoading(false);
-		setResponse(data);
-		setFetchError(error);
+	const saveCampaign = async (formData) => {
+		createRef.current.onCreateConfirm({ ...formData, status: 'Draft' }, 'Creating Campaign');
 	};
 
-	const saveAndSendHandle = async (formData) => {
-		setLoading(true);
-		const { data, error } = await createCampaign({ ...formData, status: 'Sent' });
-		setLoading(false);
-		setResponse(data);
-		setFetchError(error);
-	};
-
-	const confirmHandle = () => {
-		setResponse(null);
+	const sendCampaign = async (formData) => {
+		const result = await emailsSenderRef.current.send(formData);
+		if (!result.error) {
+			createRef.current.onCreateConfirm({ ...formData, status: 'Sent' }, 'Sending emails ');
+		}
 	};
 
 	return (
 		<div>
-			<h1>Create Campaign </h1>
-			{loading && <Spinner />}
-			{fetchError && <p>Sending failed</p>}
-			{!response &&
-			!loading &&
-			!fetchError && <CampaignForm saveAndSendHandle={saveAndSendHandle} saveHandle={createNewSubscriber} />}
-			{response && (
-				<div>
-					<p>Successfully saved campaign</p>
-					<Button onClick={confirmHandle}>OK</Button>
-				</div>
-			)}
+			<h1>Create new Campaign</h1>
+			<EmailsSender saveHandle={createCampaign} ref={emailsSenderRef}>
+				<Create ref={createRef} createHandle={createCampaign} redirectPath='/campaigns'>
+					<CampaignForm saveAndSendHandle={sendCampaign} saveHandle={saveCampaign} />
+				</Create>
+			</EmailsSender>
 		</div>
 	);
 };

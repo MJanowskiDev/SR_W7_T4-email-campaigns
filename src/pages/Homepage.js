@@ -5,7 +5,7 @@ const Homepage = () => {
 	return (
 		<div className={classes.Homepage}>
 			<h1>Welcome to Campaigner App!</h1>
-			<img height={200} src={envelopeImg} />
+			<img width={450} height={200} alt='CampaignApp envelope' src={envelopeImg} />
 			<p>Service that provides convenient Email campaigns management.</p>
 
 			<p>

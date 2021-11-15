@@ -1,37 +1,22 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { SubscriberForm } from 'components/Forms';
 import { createSubscriber } from 'utils/api-subscribers';
-import { Spinner, Button } from 'components/ui';
+
+import { Create } from 'components/CRUD';
 
 const AddSubscriber = () => {
-	const [ fetchError, setFetchError ] = useState();
-	const [ loading, setLoading ] = useState(false);
-	const [ response, setResponse ] = useState();
+	const createRef = useRef();
 
 	const createNewSubscriber = async (formData) => {
-		setLoading(true);
-		const { data, error } = await createSubscriber(formData);
-		setLoading(false);
-		setResponse(data);
-		setFetchError(error);
-	};
-
-	const confirmHandle = () => {
-		setResponse(null);
+		createRef.current.onCreateConfirm(formData, 'Creating Subscriber');
 	};
 
 	return (
 		<div>
 			<h1>Add new Subscriber</h1>
-			{loading && <Spinner />}
-			{fetchError && <p>Sending failed</p>}
-			{!response && !loading && !fetchError && <SubscriberForm saveHandle={createNewSubscriber} />}
-			{response && (
-				<div>
-					<p>Successfully saved Subscriber</p>
-					<Button onClick={confirmHandle}>OK</Button>
-				</div>
-			)}
+			<Create ref={createRef} createHandle={createSubscriber} redirectPath='/subscribers'>
+				<SubscriberForm saveHandle={createNewSubscriber} />
+			</Create>
 		</div>
 	);
 };

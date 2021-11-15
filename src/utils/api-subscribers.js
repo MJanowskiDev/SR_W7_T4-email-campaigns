@@ -113,3 +113,9 @@ export const getRecipientEmails = async () => {
 
 	return { data: emailsArray, error: res.error };
 };
+
+export const getRecipients = async () => {
+	const recipientsUrl = `https://api.airtable.com/v0/appFfCocKXEnFjab8/subscribers?api_key=${API_KEY}&fields%5B%5D=email&fields%5B%5D=name`;
+	const res = await getAll(recipientsUrl);
+	return { data: res.data, error: res.error };
+};
